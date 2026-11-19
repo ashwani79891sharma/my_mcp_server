@@ -1,16 +1,19 @@
 import platform, shutil, datetime
 from pathlib import Path
 from mcp.server.fastmcp import FastMCP
+from monitoring import monitored, stats_snapshot   # add this line
 
 mcp = FastMCP("laptop-mcp", host="127.0.0.1", port=8000)
 
 @mcp.tool()
+@monitored 
 def system_info() -> str:
     """Return OS, Python version and free disk space of this laptop."""
     total, used, free = shutil.disk_usage("C:\\")
     return f"{platform.platform()}, Python {platform.python_version()}, free disk {free // 2**30} GB"
 
 @mcp.tool()
+@monitored 
 def list_files(folder: str = "C:\\my-mcp") -> str:
     """List files in a folder."""
     p = Path(folder)
@@ -19,6 +22,7 @@ def list_files(folder: str = "C:\\my-mcp") -> str:
     return "\n".join(x.name for x in p.iterdir())
 
 @mcp.tool()
+@monitored 
 def current_time() -> str:
     """Return the current date and time."""
     return datetime.datetime.now().isoformat(timespec="seconds")
