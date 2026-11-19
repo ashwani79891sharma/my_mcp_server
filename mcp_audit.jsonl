@@ -2,3 +2,10 @@
 {"ts": "2026-11-19T07:14:09+00:00", "tool": "system_info", "args": {}, "status": "ok", "ms": 525.8, "result_chars": 57}
 {"ts": "2026-11-19T07:14:09+00:00", "tool": "list_files", "args": {"folder": "C:\\my-mcp_server"}, "status": "ok", "ms": 0.4, "result_chars": 105}
 {"ts": "2026-11-19T07:14:09+00:00", "tool": "current_time", "args": {}, "status": "ok", "ms": 0.0, "result_chars": 19}
+{"ts": "2026-11-19T07:16:01+00:00", "tool": "system_info", "args": {}, "status": "ok", "ms": 307.9, "result_chars": 57}
+{"ts": "2026-11-19T07:16:01+00:00", "tool": "list_files", "args": {"folder": "."}, "status": "ok", "ms": 0.6, "result_chars": 105}
+{"ts": "2026-11-19T07:16:01+00:00", "tool": "list_files", "args": {"folder": "C:\\"}, "status": "denied", "ms": 0.3, "result_chars": 54}
+{"ts": "2026-11-19T07:16:01+00:00", "tool": "current_time", "args": {}, "status": "ok", "ms": 0.0, "result_chars": 19}
+{"ts": "2026-11-19T07:16:23+00:00", "tool": "list_files", "args": {"folder": "."}, "status": "ok", "ms": 0.6, "result_chars": 105}
+{"ts": "2026-11-19T07:16:23+00:00", "tool": "list_files", "args": {"folder": ".vscode"}, "status": "ok", "ms": 0.4, "result_chars": 8}
+{"ts": "2026-11-19T07:16:23+00:00", "tool": "list_files", "args": {"folder": "C:\\"}, "status": "denied", "ms": 0.3, "result_chars": 54}

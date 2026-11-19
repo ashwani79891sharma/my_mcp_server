@@ -24,8 +24,9 @@ import sys
 import time
 from collections import defaultdict
 from datetime import datetime, timezone
+from pathlib import Path
 
-AUDIT_FILE = "mcp_audit.jsonl"
+AUDIT_FILE = str(Path(__file__).resolve().with_name("mcp_audit.jsonl"))
 SECRET_WORDS = ("token", "password", "secret", "key", "authorization")
 
 # Log to stderr only: with the stdio transport, anything on stdout breaks the protocol.
@@ -52,8 +53,11 @@ def _record(tool, args, started, status, result_chars):
         s["denied"] += 1
     entry = {"ts": datetime.now(timezone.utc).isoformat(timespec="seconds"), "tool": tool,
              "args": _redact(args), "status": status, "ms": round(ms, 1), "result_chars": result_chars}
-    with open(AUDIT_FILE, "a", encoding="utf-8") as f:
-        f.write(json.dumps(entry) + "\n")
+    try:
+        with open(AUDIT_FILE, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry) + "\n")
+    except OSError as exc:
+        log.exception("Unable to write MCP audit log: %s", exc)
     log.info("tool_call tool=%s status=%s ms=%.0f", tool, status, ms)
 
 
